@@ -1,15 +1,16 @@
-
-# Author: Diana Mohammadi
-# Assignment: #1
-
+"""
+Author: Diana Mohammadi
+Assignment: 1
+"""
 gym_member = "Alex Alliton" #this is a string
 preferred_wight_kg=20.5 #this is a float
 highest_reps=25 #this is an integer
 membership_active=True #this is a boolean
 
-#this is a dictionary with keys of the name of the friends and values of the minutes they spent on doing 3 differen exercises (yoga, running, or weightlifting)
+#this is a dictionary with keys of the name of the friends and values of the minutes they spent on doing 3 differen exercises (yoga, running, and weightlifting)
 workout_stats = {"Alex":(30,45,60), "John":(25,40,55), "Sara":(20,35,50)} 
 
+#create a lost of keys to iteragte through them instead of the dictionary
 keys = list(workout_stats.keys())
 
 for key in keys:
@@ -21,14 +22,49 @@ for key in keys:
 
 #this is a 2 dimensional list that contains the minutes spent on each exercise by each friend
 workout_list = [list(workout_stats[key]) for key in workout_stats if not key.endswith("_Total")]
-      
+    
+# the minutes spent on Yoga and Running for each friend
 for i in workout_list:
+    if i == 0:
+        print("Alex:")
+    elif i == 1:
+        print("John:")
+    else:
+        print("Sara:")
     print("Minutes spent on Yoga:", i[0]) 
     print("Minutes spent on Running:", i[1],"\n")
 
+# the minutes spent on weightlifting for the last two friends
 for i in workout_list[1:]:
+    if i == 1:
+        print("John:")
+    else:
+        print("Sara:")
     print("Minutes spent on weightlifting:", i[2],"\n")   
 
-      
+for key in workout_stats:
+    if key.endswith("_Total") and (workout_stats[key] >= 120):
+        name = key.replace("_Total", "")
+        print(f"Great job staying active, {name}!\n")
+        
+
+nameInput = input("Enter the name of the friend: ")
+if nameInput in workout_stats:
+    print(f"minutes spent on yoga: {workout_stats[nameInput][0]}\n minutes spent on running: {workout_stats[nameInput][1]}\n minutes spent on weightlifting: {workout_stats[nameInput][2]}\n total minutes spent: {workout_stats[nameInput+'_Total']}")
+else:
+    print(f"\nFriend {nameInput} not found in the records.")
+
+
+#this is highest and lowest minutes spent on workingout
+total_values={key:value for key, value in workout_stats.items() if key.endswith("_Total")}
+max_value = max(total_values.values())
+min_value = min(total_values.values())
+
+for key, value in total_values.items():
+    if value == max_value:
+        print(f"\n{key} spent the most time working out with {value} minutes.")
+    elif value == min_value:
+        print(f"\n{key} spent the least time working out with {value} minutes.")
+
         
         

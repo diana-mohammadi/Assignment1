@@ -53,10 +53,11 @@ max_value = max(total_values.values())
 min_value = min(total_values.values())
 
 for key, value in total_values.items():
+    name = key.replace("_Total", "")
     if value == max_value:
-        print(f"\n{key} spent the most time working out with {value} minutes.")
+        print(f"\n{name} spent the most time working out with {value} minutes.")
     elif value == min_value:
-        print(f"\n{key} spent the least time working out with {value} minutes.")
+        print(f"\n{name} spent the least time working out with {value} minutes.")
 
         
         

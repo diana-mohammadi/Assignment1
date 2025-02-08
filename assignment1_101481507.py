@@ -24,30 +24,22 @@ for key in keys:
 workout_list = [list(workout_stats[key]) for key in workout_stats if not key.endswith("_Total")]
     
 # the minutes spent on Yoga and Running for each friend
-for i in workout_list:
-    if i == 0:
-        print("Alex:")
-    elif i == 1:
-        print("John:")
-    else:
-        print("Sara:")
-    print("Minutes spent on Yoga:", i[0]) 
-    print("Minutes spent on Running:", i[1],"\n")
-
+for i in range(len(workout_list)):
+    print(f"\n{keys[i]}:")
+    print("Minutes spent on Yoga:", workout_list[i][0]) 
+    print("Minutes spent on Running:", workout_list[i][1],"\n")
+print("----------------------------------")
 # the minutes spent on weightlifting for the last two friends
-for i in workout_list[1:]:
-    if i == 1:
-        print("John:")
-    else:
-        print("Sara:")
-    print("Minutes spent on weightlifting:", i[2],"\n")   
-
+for i in range(1, len(workout_list)):
+    print(f"{keys[i]}:")
+    print("Minutes spent on weightlifting:", workout_list[i][2],"\n")   
+print("----------------------------------\n")
 for key in workout_stats:
     if key.endswith("_Total") and (workout_stats[key] >= 120):
         name = key.replace("_Total", "")
         print(f"Great job staying active, {name}!\n")
         
-
+print("----------------------------------\n")
 nameInput = input("Enter the name of the friend: ")
 if nameInput in workout_stats:
     print(f"minutes spent on yoga: {workout_stats[nameInput][0]}\n minutes spent on running: {workout_stats[nameInput][1]}\n minutes spent on weightlifting: {workout_stats[nameInput][2]}\n total minutes spent: {workout_stats[nameInput+'_Total']}")
